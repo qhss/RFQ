@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+	<div th:fragment="leftmenu_his" id="menus" style="display: none;">
+		<div class="admin-sidebar am-offcanvas" id="side_menu"	th:utext="${session.user?.hisMenus}"></div>
+	</div>
+	<div th:fragment="leftmenuscript_his" id="admin-offcanvas">
+		<script type="text/javascript">
+			var store = $.AMUI.store;
+			var hisMenus = store.get('hotelMenu');
+			if (hisMenus) {
+				$("#admin-offcanvas").html(hisMenus);
+				$("#menus").html("");
+			} else {
+				$("#admin-offcanvas").html($("#menus").html());
+				$("#menus").html("");
+			}
+			$("#admin-offcanvas").on(
+					"click",
+					".am-cf.am-c",
+					function() {
+						//store.set('menuId', this.id);admin-offcanvas
+						$("#admin-offcanvas").find(".am-cf.am-c").css("color",
+								"#5c5c5c");
+						$(this).css("color", "#0e90d2");
+						store.set('hotelMenu', $("#admin-offcanvas").html());
+					});
+			/* $("#admin-offcanvas").on("click", ".admin-sidebar-list", function() {
+				$(this).children("li").find("a").addClass("am-collapsed");
+				$(this).children("li").find("ul").removeClass("am-in");
+				$("#admin-offcanvas").find(".am-cf.am-c").css("color", "#5c5c5c");
+				$(this).css("color", "#0e90d2"); 
+			}); */
+			$("#admin-offcanvas").on("click", ".admin-parent", function() {
+				var obj = $(this);
+				var next = $(this).nextAll();
+				var prev = $(this).prevAll();
+				$(this).siblings().find("a").addClass("am-collapsed");
+				$(this).siblings().find("ul").removeClass("am-in");
+			});
+			$("#btnLeftMenu").click(function() {
+				$('#side_menu').toggle(300);
+
+				setTimeout(function() {
+					store.set('hotelMenu', $("#admin-offcanvas").html());
+				}, 500)
+
+			});
+
+			
+
+			$(window).resize(function() {
+				var w = $(window).width();
+				if (w <= 640 && $('#side_menu').is(':visible')) {
+					$('#side_menu').hide();
+				}
+			});
+			$(function() {
+				switchMobile();
+
+				var deg = 0;
+				$("#iconMenu").rotate({
+					bind : {
+						click : function() {
+							deg = deg == 90 ? 0 : 90;
+							;
+							$(this).rotate({
+								animateTo : deg
+							})
+						}
+					}
+				});
+				
+				$('.admin-sidebar-sub').on('open.collapse.amui', function() {
+					var span = $(this).prev().find(".am-icon-angle-right");
+					$(span).rotate({
+						animateTo : 90
+					});
+
+				}).on('close.collapse.amui', function() {
+					var span = $(this).prev().find(".am-icon-angle-right");
+					$(span).rotate({
+						animateTo : 0
+					});
+				});
+				
+			});
+
+			function switchMobile() {
+				var w = $(window).width();
+				if (w <= 640) {
+					$('#side_menu').toggle(300);
+				}
+
+			}
+		</script>
+	</div>
+
+
+
+	
+
+</body>
+</html>

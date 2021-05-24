@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head th:include="common/layouts::head"></head>
+<head>
+	<link rel="stylesheet" href="css/jquery.tagsinput.min.css" />
+	<script type="text/javascript" src="js/jquery.tagsinput.min.js" ></script>
+	<style>
+		.tagsinput{height:50px!important;min-height: 50px!important;width:auto!important;}
+		.tagsinput span.tag{background-color:#e6e6e6!important;border:0px!important;color:#222!important;}
+		.tagsinput span.tag a{color:#333!important;font-size: 13px!important;margin-left: 2px;}
+		.tagsinput input{width:100px!important;}
+	</style>
+</head>
+<body>
+
+	<div th:include="common/layouts::top"></div>
+	
+	<div class="am-cf admin-main">
+	
+		<div th:replace="common/layouts::leftmenu"></div>
+		<div th:replace="common/layouts::leftmenuscript"></div>
+
+		<!-- content start -->
+		<div class="admin-content" id="panel">
+			<div :class="editmode==0?'':'am-hide'" class="admin-content-body">
+			
+				<div class="am-cf am-padding am-padding-bottom-0">
+					<div class="am-fl am-cf">
+						<strong class="am-text-primary am-text-lg pagetitle">房型管理</strong> / <small>设置您酒店的可销售房型,设置每个房型的设施和相册</small>
+					</div>
+				</div>
+				
+				<hr><br/>
+				
+				<from class="am-g am-form-inline" id="searchParam">
+				<div class=" am-u-md-4">
+					<div class="am-btn-toolbar">
+						<div class="am-btn-group am-btn-group-xs">
+							<button @click="add" type="button" class="am-btn am-btn-default">
+								<span class="am-icon-plus"></span> 新增
+							</button>
+							<button type="button" class="am-btn am-btn-default sdeleteAll">
+								<span class="am-icon-trash-o"></span> 删除
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="am-hide am-u-md-8" style="width: auto;">
+					<div class="am-input-group am-input-group-sm">
+						<input type="text" id="code" class="am-form-field" style="width:100px;"
+							placeholder="编码或名称">
+						
+						<span class="am-input-group-btn">
+							<button class="am-btn am-btn-default search" type="button">搜索</button>
+						</span>
+					</div>
+				</div>
+				</from>
+
+				<table width="100%"
+					class="am-table am-table-striped am-table-hover table-main am-text-nowrap"
+					id="example">
+				</table>
+				
+			</div>
+			
+			<!-- 添加 start-->
+			
+			<div :class="editmode==1?'':'am-hide'"  class="admin-content-body">
+				<div style="padding: 15px;" class="am-g">
+					<button type="button" @click="save" class="am-btn am-btn-primary">保存</button>
+					<button type="button" @click="back" class="am-btn am-btn-default">返回</button>
+				</div>
+				<form class="am-form am-form-horizontal" id="updateFrom"
+					  method="post">
+					<input type="hidden" v-model="obj.id" name="id" value=""> <br>
+					
+					<div class="am-g">
+						<div class="am-u-sm-6">
+							<div class="am-form-group">
+								<label for="code" class="am-u-sm-3 am-form-label">房型名称：
+									<span class="am-text-danger" style="margin-left: 10px">*</span>
+								</label>
+								<div class="am-u-sm-9">
+									<input type="text" v-model="obj.typeName" class="am-form-field"
+										   maxlength="100" value=""  required=""
+										   placeholder="名称"/>
+								</div>
+							</div>
+							
+							<div class="am-form-group">
+								<label for="name" class="am-u-sm-3 am-form-label">面积：
+									<span class="am-text-danger" style="margin-left: 10px">*</span>
+								</label>
+								<div class="am-u-sm-7">
+									<input type="text" v-model="obj.area" class="am-form-field"
+										   required="" maxlength="100" value="" 
+										   placeholder="数值型面积,如:20"/>
+								</div>
+								<div style="height:37px;line-height: 37px;" class="am-u-sm-2">
+								平方米
+								</div>
+							</div>
+							
+							<div class="am-form-group">
+								<label for="name" class="am-u-sm-3 am-form-label">床情况：
+									<span class="am-text-danger" style="margin-left: 10px">*</span>
+								</label>
+								<div class="am-u-sm-9">
+									<input type="text" v-model="obj.bedResume" class="am-form-field"
+										   required="" maxlength="100" value="" 
+										   placeholder="如:2张1.5m"/>
+								</div>
+							</div>
+							
+							<div class="am-form-group">
+								<label for="name" class="am-u-sm-3 am-form-label">最多入住人数：
+									<span class="am-text-danger" style="margin-left: 10px">*</span>
+								</label>
+								<div class="am-u-sm-9">
+									<input type="text" v-model="obj.personMax" class="am-form-field"
+										   required="" maxlength="100" value="" 
+										   placeholder="2人(2人+1小童)"/>
+								</div>
+							</div>
+							
+							<div class="am-form-group">
+								<label for="name" class="am-u-sm-3 am-form-label">房间设施：
+									<span class="am-text-danger" style="margin-left: 10px">*</span>
+								</label>
+								<div class="am-u-sm-9">
+									<input data-role="tagsinput"  type="text" class="am-form-field"
+										v-model="obj.roomDevice" data-model="vue.obj.roomDevice" />
+								</div>
+							</div>
+							
+							<div class="am-form-group">
+								<label for="name" class="am-u-sm-3 am-form-label">浴室设施：
+									<span class="am-text-danger" style="margin-left: 10px">*</span>
+								</label>
+								<div class="am-u-sm-9">
+									<input data-role="tagsinput" type="text" class="am-form-field"
+										v-model="obj.bathroomDevice" data-model="vue.obj.bathroomDevice"  />
+								</div>
+							</div>
+							
+							<div class="am-form-group">
+								<label for="name" class="am-u-sm-3 am-form-label">食物设施：
+									<span class="am-text-danger" style="margin-left: 10px">*</span>
+								</label>
+								<div class="am-u-sm-9">
+									<input data-role="tagsinput" type="text" class="am-form-field"
+										v-model="obj.foodDevice" data-model="vue.obj.foodDevice"  />
+								</div>
+							</div>
+							
+						</div>
+						<div class="am-u-sm-4">
+							<div  class=" am-form-file">
+								<button type="button" class="am-btn am-btn-primary am-btn-sm">
+									<i class="am-icon-cloud-upload"></i>{{(obj.coverUrl!='' && obj.coverUrl!=null)?'重新':''}}上传主图
+								</button>
+								<input id="fileMainPic" upfile="1" exp="vue.obj.coverUrl='?'" upurl="upload/roompic" type="file" >
+							</div>
+							<div style="width:350px;min-height:250px;border: solid 1px #f6f6f6;">
+								<img  style="width:250px;" alt="" :src="obj.coverUrl">
+							</div>
+						</div>
+					</div>
+					<div style="padding:15px;" class="am-g">
+						<div class="am-form-file">
+							<button type="button" class="am-btn am-btn-secondary am-btn-sm">
+								<i class="am-icon-cloud-upload"></i>上传图册
+							</button>
+							<span id="tip" style="margin-top: 5px;marign-left:5px;color:#565656;font-size: 13px;">  双击图片可以删除。</span>
+							<input id="fileHotelPics" upfile="2" exp="vue.setpics('?')" upurl="upload/roompics" type="file" multiple="">
+						</div>
+						<div style="min-width:350px;min-height:250px;border: solid 1px #f6f6f6;overflow-x:auto;overflow-y:auto">
+							<img @dblclick="remove(index)" v-for="(item,index) in obj.pics" style="width:250px;" alt="" :src="item">
+						</div>
+					</div>	
+		
+					
+				</form>
+			</div>
+			
+			<!-- 添加 end-->
+			
+			
+			<div th:include="common/layouts::footscript"></div>
+
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	<script type="text/javascript" src="js/prod/room.js"></script>
+</body>
+</html>

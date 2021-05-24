@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head th:include="common/layouts::head"></head>
+<head>
+	<link rel="stylesheet" href="css/jquery.tagsinput.min.css" />
+	<script type="text/javascript" src="js/jquery.tagsinput.min.js" ></script>
+	<style>
+		.am-active{background-color: #f37b1d!important;border-color:#f37b1d!important;color:#fff!important;}
+	</style>
+</head>
+<body>
+
+	<div th:include="common/layouts::top"></div>
+	
+	<div class="am-cf admin-main">
+	
+		<div th:replace="common/layouts::leftmenu"></div>
+		<div th:replace="common/layouts::leftmenuscript"></div>
+
+		<!-- content start -->
+		<div class="admin-content" id="panel">
+			<div  class="admin-content-body">
+			
+				<div class="am-cf am-padding am-padding-bottom-0">
+					<div class="am-fl am-cf">
+						<strong class="am-text-primary am-text-lg pagetitle">房型价格管理</strong> / <small>设置每个房型的销售价格</small>
+					</div>
+				</div>
+				<hr>
+				<br/>
+				
+				<div class="am-btn-group" data-am-button>
+				  <label style="margin-left: 10px;" v-for="(item,index) in rooms" class="am-btn am-btn-default">
+				    <input :raw="item.id" type="radio" name="optTypeName" >{{item.name}}
+				  </label>
+				</div>
+				<br/>
+				<div class="am-padding" style="font-size:18px;font-weight:600;color:#444;">1、默认价格和房间数</div>
+				<div class="am-padding">
+					<form class="am-form-inline" role="form">
+					  <div class="am-form-group">
+					  	<label class="am-form-label">可售数量</label>
+					  	<div class="am-input-group">
+					    	<input type="text" style="width:100px" v-model="roomprice.planCount" class="am-form-field" placeholder="最多可销售间数">
+					    	<span class="am-input-group-label">间</span>
+					    </div>
+					  </div>
+					  
+
+					  <div style="margin-left: 20px;" class="am-form-group">
+					  	<label class="am-form-label">门市价:</label>
+					  	<div class="am-input-group">
+					  		<span class="am-input-group-label">￥</span>
+					    	<input type="text" style="width:100px" v-model="roomprice.price" class="am-form-field" placeholder="门市价格">
+					    	<span class="am-input-group-label">元/间晚</span>
+					    </div>
+					  </div>
+					
+					  <div style="margin-left: 20px;" class="am-form-group">
+					  	<label class="am-form-label">会员价:￥</label>
+					  	<div class="am-input-group">
+					  		<span class="am-input-group-label">￥</span>
+					    	<input type="text" style="width:100px" v-model="roomprice.memberPrice"  class="am-form-field" placeholder="会员价格">
+					    	<span class="am-input-group-label">元/间晚</span>
+					    </div>
+					  </div>
+					  
+					  <div style="margin-left: 20px;" class="am-form-group">
+					    <input @click="saveprice" type="button" class="am-btn am-btn-warning" value="保存">
+					  </div>
+				</div>
+				 
+				</form>
+				
+				<div class="am-padding" style="font-size:18px;font-weight:600;color:#444;">2、指定日期的价格和房间数</div>
+				
+				<from class="am-g am-form-inline" id="searchParam">
+				<div class=" am-u-md-4">
+					<div class="am-btn-toolbar">
+						<div class="am-btn-group am-btn-group-xs">
+							<button @click="add" type="button" class="am-btn am-btn-default">
+								<span class="am-icon-plus"></span> 新增
+							</button>
+							<button type="button" class="am-btn am-btn-default sdeleteAll">
+								<span class="am-icon-trash-o"></span> 删除
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="am-u-md-8" style="width: auto;">
+					<div class="am-input-group am-input-group-sm">
+						<input type="text" id="startDate" class="am-form-field" style="width:100px;"
+							placeholder="开始日期"/>
+						
+						<input type="text" id="endDate" class="am-form-field" style="width:100px;"
+							placeholder="结束日期"/>
+						
+						<span class="am-input-group-btn">
+							<button class="am-btn am-btn-default search" type="button">搜索</button>
+						</span>
+					</div>
+				</div>
+				</from>
+				<table width="100%"
+					class="am-table am-table-striped am-table-hover table-main am-text-nowrap"
+					id="example">
+				</table>
+				
+			</div>
+			
+			
+			<!-- 添加  start-->
+	<div id="editorPanel" style="display: none;" class="popup">
+		<input type="hidden" v-model="obj.id" name="id" value="">
+		<input type="hidden" v-model="obj.hotelRoomId" name="id" value="">
+		<form class="am-form" id="updateFrom" role="form">
+		
+			<div style="margin-left:20px;margin-top:15px;" class="am-form-group">
+				<label class="am-form-label">日期</label>
+				<input type="text" style="width:90%" v-model="obj.date" class="am-form-field" placeholder="销售日期">
+			</div>
+			
+			<div style="margin-left:20px;" class="am-form-group">
+				<label class="am-form-label">可售数量</label>
+				<div style="width:90%" class="am-input-group">
+			  		<input type="text" style="width:100%" v-model="obj.planCount" class="am-form-field" placeholder="最多可销售间数">
+			  		<span class="am-input-group-label">间</span>
+			  	</div>
+			</div>
+		  
+
+			<div style="margin-left: 20px;" class="am-form-group">
+				<label class="am-form-label">门市价:</label>
+				<div style="width:90%" class="am-input-group">
+					<span class="am-input-group-label">￥</span>
+			  		<input type="text" style="width:100%" v-model="obj.price" class="am-form-field" placeholder="门市价格">
+			  	<span class="am-input-group-label">元/间晚</span>
+			  </div>
+			</div>
+			
+			<div style="margin-left:20px;" class="am-form-group">
+				<label class="am-form-label">会员价:￥</label>
+				<div style="width:90%" class="am-input-group">
+					<span class="am-input-group-label">￥</span>
+			  		<input type="text" style="width:100%"  v-model="obj.memberPrice"  class="am-form-field" placeholder="会员价格">
+			  	<span class="am-input-group-label">元/间晚</span>
+			  </div>
+			</div>
+			
+			
+		</form>
+	</div>	
+			
+			
+			<div th:include="common/layouts::footscript"></div>
+
+		</div>
+	</div>
+
+	
+	
+	
+	
+	
+	<script type="text/javascript" src="js/prod/price.js"></script>
+</body>
+</html>

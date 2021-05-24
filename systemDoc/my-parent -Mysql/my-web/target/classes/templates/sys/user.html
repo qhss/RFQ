@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head th:include="common/layouts::head"></head>
+<body>
+
+	<div th:include="common/layouts::top"></div>
+	
+	<div class="am-cf admin-main">
+	
+		<div th:replace="common/layouts::leftmenu"></div>
+		<div th:replace="common/layouts::leftmenuscript"></div>
+
+		<!-- content start -->
+		<div class="admin-content">
+			<div class="admin-content-body">
+				<div class="am-cf am-padding am-padding-bottom-0">
+					<div class="am-fl am-cf">
+						<strong class="am-text-primary am-text-lg pagetitle">用户及授权</strong> / <small>users</small>
+					</div>
+				</div>
+
+				<hr>
+				<div class="am-u-sm-2 am-u-md-2">
+					<div class="zTreeDemoBackground left am-center">
+						<ul id="deptTree" class="ztree"></ul>
+					</div>
+				</div>
+				<div class="am-u-sm-10 am-u-md-10">
+				<from class="am-g am-form-inline" id="searchParam">
+				<div class=" am-u-md-4">
+					<div class="am-btn-toolbar">
+						<div class="am-btn-group am-btn-group-xs">
+							<button type="button" class="am-btn am-btn-default sAdd">
+								<span class="am-icon-plus"></span> 新增
+							</button>
+							<button type="button" class="am-btn am-btn-default sdeleteAll">
+								<span class="am-icon-trash-o"></span> 删除
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="am-u-md-7" style="width:auto;">
+
+
+					<div class="am-input-group am-input-group-sm">
+						<input type="text" id="keyword" class="am-form-field"
+							placeholder="登陆账号/姓名/手机号码"> <span class="am-input-group-btn">
+							<button class="am-btn am-btn-default search" type="button">搜索</button>
+						</span>
+					</div>
+				</div>
+				</from>
+					<table width="100%"
+						   class="am-table am-table-striped am-table-hover table-main am-text-nowrap"
+						   id="example">
+					</table>
+				</div>
+
+			</div>
+
+			<div th:include="common/layouts::footscript"></div>
+		</div>
+
+	</div>
+
+
+	<div id="alert" style="display: none;" class="popup">
+		<form class="am-form am-form-horizontal" id="updateFrom"
+			novalidate="novalidate">
+			<input type="hidden" id="id" name="id"
+				value="" v-model="user.id"> <br>
+			<div class="am-form-group">
+				<label for="loginName" class="am-u-sm-3 am-form-label" >账号：</label>
+				<div class="am-u-sm-9">
+					<input type="text" name="loginName" class="am-form-field" v-model="user.loginName"
+						required="" maxlength="22" value=""  pattern="[a-z]*" id="updateLoginName"
+						placeholder="请输入账号" >
+					<div class="am-alert am-alert-danger" id="loginNameError" style="display:none;width:90%">账号已存在</div>
+				</div>
+			</div>
+
+			
+			
+			<div class="am-form-group">
+				<label for="updateUserName" class="am-u-sm-3 am-form-label">姓名：</label>
+				<div class="am-u-sm-9">
+					<input  autocomplete="off" type="text" name="userName" maxlength="22" required="" v-model="user.userName"
+						value="" id="updateUserName" placeholder="请输入真实姓名">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="depart" class="am-u-sm-3 am-form-label">所属部门：</label>
+				<div class="am-u-sm-9">
+					<select id="depart" v-model="user.departId" name="departId" >
+						<option v-for="dept in departs" :selected="user.departId==dept.id?true:false" :value='dept.id'>{{dept.name}}</option>
+					</select>
+				</div>
+			</div>	
+			<div v-if="user.id=='' || user.id==null" class="am-form-group">
+				<label for="password" class="am-u-sm-3 am-form-label">密码：</label>
+				<div class="am-u-sm-9">
+					<input id="password" autocomplete="off" type="text" onfocus="this.type='password'" required="" maxlength="20"  v-model="user.password" placeholder="请输入密码" >
+				</div>
+			</div>
+			<div v-if="user.id=='' || user.id==null" class="am-form-group">
+				<label for="repassword" class="am-u-sm-3 am-form-label">重复密码：</label>
+				<div class="am-u-sm-9">
+					<input type="text" id="repassword" onfocus="this.type='password'" required="" maxlength="50" placeholder="请再次输入密码">
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="sex" class="am-u-sm-3 am-form-label">性别：</label>
+				<div class="am-u-sm-9">
+					<select id="updateSex" name="sex"  v-model="user.sex" >
+						<option value=''>请选择</option>
+						<option value='1'>男</option>
+						<option value='0'>女</option>
+					</select>
+				</div>
+			</div>
+			<div class="am-form-group">
+				<label for="phone" class="am-u-sm-3 am-form-label">手机号码：</label>
+				<div class="am-u-sm-9">
+					<input type="text" class="js-pattern-mobile" name="phone" maxlength="11" v-model="user.phone"
+						required="" value="" id="updatePhone" placeholder="请输入手机号">
+				</div>
+			</div>
+			
+		
+			<div class="am-form-group">
+				<label  class="am-u-sm-3 am-form-label">角色：</label>
+				<div class="am-u-sm-9 am-form-inline role_check" style="width: 74%">
+				</div>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript" src="js/sys/user.js"></script>
+</body>
+</body>
+</html>

@@ -1,0 +1,15 @@
+eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/main/java/com/hotel/common=UTF-8
+encoding//src/main/java/com/hotel/dao=UTF-8
+encoding//src/main/java/com/hotel/dao/room=UTF-8
+encoding//src/main/java/com/hotel/dao/room/HotelRepository.java=UTF-8
+encoding//src/main/java/com/hotel/entity=UTF-8
+encoding//src/main/java/com/hotel/service=UTF-8
+encoding//src/main/java/com/hotel/service/room=UTF-8
+encoding//src/main/java/com/hotel/service/where=UTF-8
+encoding//src/main/java/com/hotel/util=UTF-8
+encoding//src/main/resources=UTF-8
+encoding//src/test/java=UTF-8
+encoding//src/test/resources=UTF-8
+encoding/<project>=UTF-8
