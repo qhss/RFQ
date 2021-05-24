@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="204371e5-947a-4005-bf90-201ccf235e14" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="147" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Interface" />
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\tools\apache-maven-3.6.0\repository" />
+        <option name="mavenHome" value="D:/tools/apache-maven-3.6.0" />
+        <option name="userSettingsFile" value="D:\tools\apache-maven-3.6.0\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectId" id="1pvGG9FrEFdP7aCdD8rgjXgLxWv" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../海康考勤机/CH-HCNetSDKV6.1.4.17_build20200331_Win64/Demo示例/4- Java 开发示例/1-ClientDemo/ClientDemo-NetBeansPro" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.39195403" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.hotel.config.sapConnection" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.rfq.dao.rfq" />
+      <recent name="com.rfq.service.rfq" />
+      <recent name="com.rfq.dao.vendor" />
+      <recent name="com.rfq.dao.material" />
+      <recent name="com.rfq.dao.pop" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\hays\Desktop\project\my-parent-SqlServer\my-web\src\main\resources\static\js\select2" />
+      <recent name="C:\Users\hays\Desktop\project\my-parent-SqlServer\my-web\src\main\resources\static\js\Typeahead" />
+      <recent name="C:\Users\hays\Desktop\project\my-parent-SqlServer\my-web\src\main\resources\static\img" />
+      <recent name="C:\Users\hays\Desktop\project\my-parent-SqlServer\my-web\src\main\resources\templates\common\fragments" />
+      <recent name="C:\Users\hays\Desktop\project\my-parent-SqlServer\my-web\src\main\resources\templates" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Test">
+    <configuration name="SAPConnUtilsTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.rfq.config.sapConnection.SAPConnUtilsTest" />
+      <module name="my-web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.rfq.config.sapConnection.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test" />
+      <module name="my-web" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="App" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="my-web" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.rfq.App" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.SAPConnUtilsTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",SHOW_FIELDS" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="204371e5-947a-4005-bf90-201ccf235e14" name="Default Changelist" comment="" />
+      <created>1616056051304</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1616056051304</updated>
+      <workItem from="1616056055038" duration="1269000" />
+      <workItem from="1616057421018" duration="2582000" />
+      <workItem from="1616113493673" duration="934000" />
+      <workItem from="1616114518143" duration="70000" />
+      <workItem from="1616115005252" duration="9441000" />
+      <workItem from="1616147203264" duration="77000" />
+      <workItem from="1616147635025" duration="43000" />
+      <workItem from="1616147779536" duration="998000" />
+      <workItem from="1616372999016" duration="633000" />
+      <workItem from="1616381170531" duration="1655000" />
+      <workItem from="1616392653159" duration="3426000" />
+      <workItem from="1616399160678" duration="1197000" />
+      <workItem from="1616458798739" duration="14443000" />
+      <workItem from="1616483134767" duration="5116000" />
+      <workItem from="1616554816191" duration="3636000" />
+      <workItem from="1616566301159" duration="2555000" />
+      <workItem from="1616569768270" duration="2161000" />
+      <workItem from="1616646055062" duration="8013000" />
+      <workItem from="1616718224265" duration="623000" />
+      <workItem from="1616726245436" duration="10555000" />
+      <workItem from="1616740675396" duration="135000" />
+      <workItem from="1616901008878" duration="19591000" />
+      <workItem from="1616977906471" duration="6888000" />
+      <workItem from="1617064818857" duration="27215000" />
+      <workItem from="1617150092978" duration="11031000" />
+      <workItem from="1617236396021" duration="1605000" />
+      <workItem from="1617239624382" duration="918000" />
+      <workItem from="1617264118219" duration="6671000" />
+      <workItem from="1617322954322" duration="24509000" />
+      <workItem from="1617669200747" duration="19447000" />
+      <workItem from="1617754820788" duration="26473000" />
+      <workItem from="1617841595742" duration="22035000" />
+      <workItem from="1617868623856" duration="7496000" />
+      <workItem from="1617928148043" duration="28821000" />
+      <workItem from="1618123167449" duration="13925000" />
+      <workItem from="1618186992381" duration="15027000" />
+      <workItem from="1618273265097" duration="30493000" />
+      <workItem from="1618360084651" duration="25404000" />
+      <workItem from="1618445878450" duration="25570000" />
+      <workItem from="1618532615169" duration="22758000" />
+      <workItem from="1618642716066" duration="10955000" />
+      <workItem from="1618792206285" duration="17889000" />
+      <workItem from="1618878968319" duration="17174000" />
+      <workItem from="1618965500660" duration="17267000" />
+      <workItem from="1619051121633" duration="18953000" />
+      <workItem from="1619137583238" duration="12466000" />
+      <workItem from="1619310150723" duration="12030000" />
+      <workItem from="1619396618213" duration="17812000" />
+      <workItem from="1619483461078" duration="18519000" />
+      <workItem from="1619569799393" duration="5602000" />
+      <workItem from="1619656287854" duration="1768000" />
+      <workItem from="1619742814185" duration="7480000" />
+      <workItem from="1620260826643" duration="9432000" />
+      <workItem from="1620347665371" duration="5720000" />
+      <workItem from="1620433931803" duration="3601000" />
+      <workItem from="1620610750764" duration="7996000" />
+      <workItem from="1620693433414" duration="6541000" />
+      <workItem from="1620779130124" duration="2996000" />
+      <workItem from="1620801545811" duration="404000" />
+      <workItem from="1620802782670" duration="2658000" />
+      <workItem from="1620894653569" duration="2513000" />
+      <workItem from="1620952231101" duration="6870000" />
+      <workItem from="1621211859679" duration="10965000" />
+      <workItem from="1621297476709" duration="4774000" />
+      <workItem from="1621384550119" duration="6737000" />
+      <workItem from="1621471079541" duration="8356000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/my-module/src/main/java/com/rfq/entity/sys/SysMenu.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>jar://D:/tools/apache-maven-3.6.0/repository/org/springframework/data/spring-data-jpa/2.0.6.RELEASE/spring-data-jpa-2.0.6.RELEASE.jar!/org/springframework/data/jpa/repository/JpaSpecificationExecutor.class</url>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/my_parent_SqlServer$App.ic" NAME="App Coverage Results" MODIFIED="1619061953482" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>

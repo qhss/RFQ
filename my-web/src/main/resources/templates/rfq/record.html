@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head th:include="common/layouts::head"></head>
+<head>
+	<style>
+	</style>
+</head>
+<body>
+
+	<div th:include="common/layouts::top"></div>
+	
+	<div class="am-cf admin-main">
+	
+		<div th:replace="common/layouts::leftmenu"></div>
+		<div th:replace="common/layouts::leftmenuscript"></div>
+
+		<!-- content start -->
+		<div class="admin-content am-padding">
+			<div class="admin-content-body">
+			
+				<div class="am-cf  am-padding-bottom-0">
+					<div class="am-fl am-cf">
+						<strong class="am-text-primary am-text-lg pagetitle">我的RFQ记录</strong> / <small>展示报价信息列表</small>
+					</div>
+					
+				</div>
+
+				<hr><br/>
+
+				<div class="am-input-group am-input-group-sm">
+					<input type="text" id="kRfqId" class="am-form-field" style="width:100px;"
+						   placeholder="输入RFQID">
+					<input type="text" id="kCardCode" class="am-form-field" style="width:100px;"
+						   placeholder="输入客户代码">
+					<input type="text" id="kItemcode" class="am-form-field" style="width:100px;"
+						   placeholder="输入料号">
+					<button class="am-btn am-btn-default search" type="button">搜索</button>
+				</div>
+				<div class="am-scrollable-horizontal">
+					<table width="100%"
+						class="am-table am-table-striped am-table-hover table-main am-text-nowrap"
+						id="example">
+					</table>
+				</div>
+
+			</div>
+			<div th:include="common/layouts::footscript"></div>
+
+		</div>
+	</div>
+
+	<!-- 添加分拣设备  end-->
+	
+	
+	<script type="text/javascript" src="js/rfq/record.js"></script>
+</body>
+</html>

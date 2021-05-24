@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head th:include="common/layouts::head"></head>
+<head>
+    <head>
+        <link rel="stylesheet" href="css/jquery.tagsinput.min.css" />
+        <script type="text/javascript" src="js/jquery.tagsinput.min.js" ></script>
+        <style>
+            .tagsinput{height:50px!important;min-height: 50px!important;width:auto!important;}
+            .tagsinput span.tag{background-color:#e6e6e6!important;border:0px!important;color:#222!important;}
+            .tagsinput span.tag a{color:#333!important;font-size: 13px!important;margin-left: 2px;}
+            .tagsinput input{width:100px!important;}
+        </style>
+    </head>
+</head>
+<body>
+
+<div th:include="common/layouts::top"></div>
+
+<div class="am-cf admin-main">
+
+    <div th:replace="common/layouts::leftmenu"></div>
+    <div th:replace="common/layouts::leftmenuscript"></div>
+    <a href="http://183.62.173.91:8888/?m=login" target="_blank" >点击此处进入深圳麦信实业OA系统</a>
+    <div th:include="common/layouts::footscript"></div>
+</div>
+
+
+</body>
+</html>

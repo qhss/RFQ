@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head th:include="common/layouts::head"></head>
+<body>
+	<div th:include="common/layouts::top"></div>
+	<style type="text/css">
+		.warning{background-color: yellow!important;color:#444!important;}
+		.cantuse {background-color:red!important;color:#fff!important;}
+		.admin-index{width: 100%;height: 100px;margin-top: 8px}
+		.admin-index dl{width: 18%;margin: 10px 1%;background-color: #FFF;float: left;border-radius: 5px;overflow: hidden}
+		.admin-index dt{width: 40%;float: left;line-height: 80px;font-size: 45px;text-align: center;color: #FFF}
+		.admin-index dd{width: 60%;text-align: center;font-size: 45px;line-height: 45px;float: right;margin-top: 4px;color: #c6cad6}
+		.admin-index .f12{font-size: 14px;line-height: 16px;margin-top: 5px}
+		.admin-index .qs{background-color: #6ccac9}
+		.admin-index .qq{background-color: #0094AE}
+		.admin-index .cs{background-color: #ff6c60}
+		.admin-index .hs{background-color: #f8d347}
+		.admin-index .ls{background-color: #57c8f2}
+	</style>
+	<div class="am-cf admin-main">
+		<strong style="display: none" class="pagetitle">首页</strong>
+		<div th:replace="common/layouts::leftmenu"></div>
+		<div th:replace="common/layouts::leftmenuscript"></div>
+
+		<!-- content start -->
+
+		<div class="admin-content">
+
+<!--		  <div class="am-cf am-padding">-->
+<!--				<div class="am-fl am-cf">-->
+<!--					<strong class="am-text-primary am-text-lg">欢迎进入麦信RFQ管理系统</strong>-->
+<!--				</div>-->
+<!--		  </div>-->
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<div class="text" style=" text-align:center;">
+			<strong class="am-text-primary am-text-lg">欢迎进入麦信RFQ管理系统</strong>
+			</div>
+	<div th:include="common/layouts::footscript"></div>
+
+	<script type="text/javascript" src="js/echarts.min.js"></script>
+<!--	<script type="text/javascript" src="js/index.js"></script>-->
+	<script th:inline="javascript">
+		var packUrl = [[${packUrl}]]
+	</script>
+		</div>
+	</div>
+
+</body>
+</html>

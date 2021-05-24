@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head th:fragment="head" >
+		<head th:replace="common/fragments/header::head_his"/>
+	</head>
+
+<body class="theme-white">
+
+	<div th:fragment="top" >
+		<div  th:replace="common/fragments/top::top_his"></div>
+	</div>
+	
+	<div th:fragment="leftmenu" th:replace="common/fragments/menu::leftmenu_his"></div>
+
+	<div th:fragment="leftmenuscript" th:replace="common/fragments/menu::leftmenuscript_his"></div>
+	
+	<div th:fragment="footscript"  >
+		<div th:replace="common/fragments/footer::footscript_his"></div>
+	</div>
+	
+</body>
+</html>

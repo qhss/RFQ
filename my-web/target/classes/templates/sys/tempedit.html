@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head th:include="common/layouts::head"></head>
+<head>
+	<link rel="stylesheet" href="assets/css/amazeui.tree.min.css" />
+	<script type="text/javascript" src="js/ckeditor/ckeditor.js"></script>
+</head>
+<body>
+
+	<div th:include="common/layouts::top"></div>
+	
+	<div class="am-cf admin-main">
+	
+		<div th:replace="common/layouts::leftmenu"></div>
+		<div th:replace="common/layouts::leftmenuscript"></div>
+
+		<!-- content start -->
+		<div class="admin-content">
+			<div class="admin-content-body">
+				<div class="am-cf am-padding am-padding-bottom-0">
+					<div class="am-fl am-cf">
+						<strong class="am-text-primary am-text-lg pagetitle">模板设置</strong> / <small>Print&Export Template Setting</small>
+					</div>
+				</div>
+
+				<hr>
+				<div class=" am-u-md-12">
+					<div class="am-btn-toolbar">
+						<div class="am-btn-group am-btn-group-xs">
+							<button type="button" class="am-btn am-btn-default sSave">
+								<span class="am-icon-save"></span>保存
+							</button>
+							 <button type="button" onclick="javascript:window.location.href='rpttemplate/rpttemplate'" class="am-btn am-btn-default sdeleteAll">
+								<span class="am-icon-mail-reply"></span>返回
+							</button> 
+						</div>
+					</div>
+					
+				</div>
+				<div style="padding:10px;">
+					<div style="width:100%;text-align:center;font-size:17px;font-weight:600;" th:text="${data.name}"></div>
+					
+					<form class="am-form am-form-horizontal" id="updateFrom"  method="post">
+						<input type="hidden" id="templateId" name="id" 	th:value="${data.id}"> <br>
+						
+						<div class="am-tabs " data-am-tabs-noswipe="1" data-am-tabs>
+						  <ul class="am-tabs-nav am-nav am-nav-tabs">
+						    <li class="am-active"><a href="#tab1">导出模板</a></li>
+						    <li><a href="#tab2">打印模板</a></li>
+						   
+						  </ul>
+						
+						  <div class="am-tabs-bd am-tabs-bd-ofv">
+						  	
+						    <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+							    <!-- This container will become the editable. -->
+							    <div th:utext="${data.exportTemplate}" id="editorExport"></div>
+						    </div>
+						    <div class="am-tab-panel am-fade" id="tab2">
+						    	 <!-- This container will become the editable. -->
+							    <div th:utext="${data.printTemplate}" id="editorPrint"></div>
+						    	
+						    </div>
+						    
+						  </div>
+						</div>
+
+					   
+					
+					    <script>
+					    	CKEDITOR.replace('editorExport',{uiColor : '#e6e6e6',height:450,
+					    		//fullPage: true,
+					    		enterMode: 2,autoParagraph: false,startupMode:'source'});
+					    	
+					    	CKEDITOR.replace('editorPrint',{uiColor : '#e6e6e6',height:450,
+					    		//fullPage: true,
+					    		enterMode: 2,autoParagraph: false,startupMode:'source'});
+					    </script>
+						
+					</form>
+				</div>
+				
+			</div>
+			
+			<div th:include="common/layouts::footscript"></div>
+
+		</div>
+	</div>
+
+
+	<script type="text/javascript" src="js/sys/tempedit.js"></script>
+	
+</body>
+</body>
+</html>

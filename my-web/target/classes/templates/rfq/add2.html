@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head th:include="common/layouts::head"></head>
+<head>
+	<link rel="stylesheet" href="css/jquery.tagsinput.min.css" />
+	<script type="text/javascript" src="js/jquery.tagsinput.min.js" ></script>
+	<style>
+		.am-active{background-color: #f37b1d!important;border-color:#f37b1d!important;color:#fff!important;}
+	</style>
+</head>
+<body>
+
+<div th:include="common/layouts::top"></div>
+
+	<div class="am-cf admin-main">
+
+		<div th:replace="common/layouts::leftmenu"></div>
+		<div th:replace="common/layouts::leftmenuscript"></div>
+
+		<!-- content start -->
+		<div class="admin-content" id="panel">
+			<div  class="admin-content-body">
+
+				<div :class="editmode==0?'':'am-hide'" class="admin-content-body">
+				<div class="am-cf am-padding am-padding-bottom-0">
+					<div class="am-fl am-cf">
+						<strong class="am-text-primary am-text-lg pagetitle">RFQ新增报价管理</strong> / <small>为客户录入报价</small>
+					</div>
+				</div>
+				<hr>
+				<br/>
+
+				<div class="am-padding" style="font-size:18px;font-weight:600;color:#444;">可供报价的公司有</div>
+				<div class="am-btn-group" data-am-button>
+					<label style="margin-left: 10px;"  class="am-btn am-btn-default">
+						<input :raw="5" type="radio" name="optTypeName" >MSSZ&nbsp;&nbsp;
+					</label>
+					<label style="margin-left: 10px;"  class="am-btn am-btn-default">
+						<input :raw="4" type="radio" name="optTypeName" >MSHK&nbsp;&nbsp;
+					</label>
+					<label style="margin-left: 10px;"  class="am-btn am-btn-default">
+						<input :raw="2" type="radio" name="optTypeName" >HS&nbsp;&nbsp;
+					</label>
+					<label style="margin-left: 10px;"  class="am-btn am-btn-default">
+						<input :raw="3" type="radio" name="optTypeName" >SPC&nbsp;&nbsp;
+					</label>
+					<label style="margin-left: 10px;"  class="am-btn am-btn-default">
+						<input :raw="6" type="radio" name="optTypeName" >MSME
+					</label>
+				</div>
+				<br/>
+
+
+				<div class="am-padding" style="font-size:18px;font-weight:600;color:#444;">选定对应的公司后进行报价</div>
+
+				<from class="am-g am-form-inline" id="searchParam">
+					<div class=" am-u-md-4">
+						<div class="am-btn-toolbar">
+							<div class="am-btn-group am-btn-group-xs">
+								<button @click="add" type="button" class="am-btn am-btn-default">
+									<span class="am-icon-plus"></span> 新增RFQ报价
+								</button>
+							</div>
+						</div>
+					</div>
+				</from>
+				</div>
+
+
+			<!-- 添加  start-->
+<!--			<div id="editorPanel" style="display: none;" class="popup">-->
+			<div :class="editmode==1?'':'am-hide'"  class="admin-content-body">
+					<div style="padding: 15px;" class="am-g">
+						<button type="button" @click="save" class="am-btn am-btn-primary">保存并发送PM审核</button>
+						<button type="button" @click="save" class="am-btn am-btn-primary">保存(记录)</button>
+						<button type="button" @click="back" class="am-btn am-btn-default">返回</button>
+					</div>
+				<!--role="form" style="width:100%;height:100%"-->
+				<form class="am-form am-form-inline" id="updateFrom" >
+
+					<legend>客户信息</legend>
+
+					<div style="margin-left:20px;" class="am-form-group">
+
+						<label class="am-form-label">客户代码</label>
+						<div style="width:100%">
+							<div class="am-input-group">
+								<input id= "customerSearch" type="text" style="width:100%" v-model="customer.cardCode" class="am-form-field" placeholder="客户代码" required="">
+								<span class="am-input-group-btn">
+								<button @click="customerSearch" class="am-btn am-btn-default" type="button">查找</button>
+								</span>
+							</div>
+						</div>
+
+					</div>
+
+					<div style="margin-left:20px;" class="am-form-group">
+						<label class="am-form-label">客户名称</label>
+						<input type="text" style="width:100%" v-model="customer.cardName" class="am-form-field" placeholder="客户名称" readonly="readonly">
+					</div>
+
+
+					<div style="margin-left:20px;" class="am-form-group">
+						<label class="am-form-label">英文名称</label>
+							<input type="text" style="width:100%" v-model="customer.cardEname" class="am-form-field" placeholder="英文名称">
+					</div>
+
+					<div style="margin-left: 20px;" class="am-form-group">
+						<label class="am-form-label">币别</label>
+							<select v-model="customer.currency" class="am-form-field" style="width:100%">
+								<option value="CNY">CNY</option>
+								<option value="HDK">HDK</option>
+								<option value="USD">USD</option>
+								<option value="RMB">RMB</option>
+							</select>
+					</div>
+
+					<div style="margin-left:20px;" class="am-form-group">
+						<label class="am-form-label">电话传真</label>
+						<input type="text" style="width:100%" v-model="customer.fax" class="am-form-field" placeholder="电话传真">
+					</div>
+
+					<div style="margin-left:20px;" class="am-form-group">
+						<label class="am-form-label">联系人</label>
+						<input type="text" style="width:100%" v-model="customer.contact" class="am-form-field" placeholder="联系人">
+					</div>
+
+					<div style="margin-left:20px;" class="am-form-group">
+						<label class="am-form-label">生产型企业分类</label>
+						<input type="text" style="width:100%" v-model="customer.cusClass" class="am-form-field" placeholder="生产型企业分类">
+					</div>
+
+
+
+					<legend>项目资料</legend>
+
+					<div style="margin-left:20px;" class="am-form-group">
+						<label class="am-form-label">Project Name</label>
+						<input type="text" style="width:100%" v-model="project.projectName" class="am-form-field" >
+					</div>
+
+					<div style="margin-left:20px;" class="am-form-group">
+						<label class="am-form-label">New or Existing Business</label>
+							<select v-model="project.business" class="am-form-field" style="width:100%">
+								<option value="New">New</option>
+								<option value="Existing">Existing</option>
+							</select>
+					</div>
+
+					<div style="margin-left:20px;" class="am-form-group">
+						<label class="am-form-label">Location1</label>
+						<input type="text" style="width:100%" v-model="project.location1" class="am-form-field">
+					</div>
+
+					<div style="margin-left:20px;" class="am-form-group">
+						<label class="am-form-label">Location2</label>
+						<select class="am-form-field" style="width:100%" value="China" v-model="project.location2">
+							<option value="China" selected="selected">China</option>
+							<option value="HongKong">Hongkong</option>
+						</select>
+					</div>
+
+					<div style="margin-left:20px;" class="am-form-group">
+						<label class="am-form-label">End Customer</label>
+<!--                        <select v-model="project.endCustomer" class="am-form-field " data-am-selected="{searchBox: 1}" style="width:100%">-->
+<!--                            <option value=""></option>-->
+<!--                            <option v-for="(item,index) in spaNames" :value="item.spazfName">{{item.spazf}}&nbsp;|{{item.spazfName}}}</option>-->
+<!--                        </select>-->
+                        <select v-model="project.endCustomer" class="am-form-field " style="width:100%">
+                            <option v-for="(item,index) in spaNames" :value="item.spazfName">{{item.spazf}}&nbsp;|{{item.spazfName}}}</option>
+                        </select>
+					</div>
+					<div style="margin-left:20px;" class="am-form-group">
+						<label class="am-form-label">Life Time(Years)</label>
+							<select v-model="project.lifeTime" class="am-form-field" style="width:100%" >
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+							</select>
+					</div>
+
+					<div style="margin-left:20px;" class="am-form-group">
+						<label class="am-form-label">End Product</label>
+						<input type="text" style="width:100%" v-model="project.endProduct" class="am-form-field">
+					</div>
+
+					<div style="margin-left:20px;" class="am-form-group">
+						<label class="am-form-label">Mp Date</label>
+						<input type="text" class="am-form-field" style="width:80%" v-model="project.mpDate"placeholder="选择日期" data-am-datepicker readonly required />
+					</div>
+
+					<div style="margin-left:20px;" class="am-form-group">
+						<label class="am-form-label">Customer Website</label>
+						<input type="text" style="width:80%" v-model="project.website" class="am-form-field" >
+					</div>
+
+					<div style="margin-left:20px;" class="am-form-group">
+						<label class="am-form-label">备注</label>
+						<input type="text" style="width:100%" v-model="customer.reamrk" class="am-form-field" placeholder="备注">
+					</div>
+
+
+
+					<legend>12个月需求预测</legend>
+					<div class="am-scrollable-horizontal">
+						<table class="am-table am-text-nowrap am-table-bordered am-table-centered" id="twelveMonth">
+							<thead>
+							<tr>
+								<td v-for="item in dateArr"> {{item.monthDate}}</td>
+								<td > 填写确认</td>
+								<td> 12个月需求预测数量</td>
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td v-for="item in dateArr">
+								<input   type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onafterpaste="this.value=this.value.replace(/[^\d]/g,'') "  name="monthCount" v-model="item.monthCount"/></td>
+<!--								<td v-for="item in dateArr"> <input  type="number"  name="monthCount"/></td>-->
+								<td> <button @click="total" class="am-btn am-btn-warning  am-round am-btn-xs" type="button">完成</button></td>
+								<td>  <input type="number" readonly="readonly" v-model="monthTotal"></td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<legend>物料信息</legend>
+					<div class="am-scrollable-horizontal">
+						<table  class="am-table am-text-nowrap am-table-bordered am-table-centered" id="tab">
+							<thead>
+								<tr>
+<!--									因为width属性不生效，故采用这种模式-->
+									<th>物料编号&emsp; &emsp;&emsp; &emsp;  &emsp; &emsp; &emsp; &emsp;</th>
+									<th>品牌&emsp; &emsp; &emsp; &emsp; </th>
+									<th>品名&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; </th>
+									<th>产品系列&emsp; &emsp; &emsp; &emsp;&emsp;  </th>
+									<th>产地&emsp; &emsp; &emsp; &emsp;&emsp;  </th>
+									<th>客户料号&emsp; &emsp; &emsp; &emsp;&emsp; &emsp;  </th>
+									<th>bom用量&emsp; &emsp; </th>
+									<th>年用量&emsp; &emsp; </th>
+									<th>目标价（未税）&emsp; &emsp; </th>
+									<th>推荐价格&emsp; &emsp; </th>
+									<th>LTB Price&emsp; &emsp; </th>
+									<th>目标价（税）&emsp; &emsp; </th>
+									<th>信息价（含税）&emsp; &emsp; </th>
+									<th>审批人&emsp; &emsp; </th>
+									<th>有效期&emsp; &emsp; &emsp; &emsp; &emsp;</th>
+									<th>SD标识&emsp; &emsp; </th>
+									<th>PCN标识&emsp; &emsp; </th>
+									<th>最小订购量&emsp; &emsp; </th>
+									<th>MOQ&emsp; &emsp; </th>
+									<th>计量单位&emsp; &emsp; </th>
+									<th>L/T&emsp; &emsp; </th>
+									<th>小计&emsp; &emsp;&emsp;  </th>
+									<th>备注&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;</th>
+									<th>标记更改&emsp; &emsp; </th>
+									<th>原报价ID&emsp; &emsp; &emsp; &emsp;&emsp;  </th>
+									<th>dataId&emsp; &emsp; </th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<div class="am-input-group">
+											<input id="itemSearch" type="text" style="width:100%" v-model="item.itemCode">
+											<span class="am-input-group-btn">
+										<button @click="itemCodeSearch" class="am-btn am-btn-default  am-round" type="button">查看</button>
+										</span>
+										</div>
+									</td>
+									<td> <input type="text"  v-model="item.brand"/></td>
+									<td> <input type="text"  v-model="item.pName"/></td>
+									<td> <input type="text"  v-model="item.series"/></td>
+									<td> <input type="text"  v-model="item.zzCountry"/></td>
+									<td> <input type="text"  v-model="item.cardItemCode"/></td>
+									<td> <input type="text"  v-model="item.EAU"/></td>
+									<td> <input type="text"  v-model="item.quantity"/></td>
+									<td> <input type="text"  v-model="item.	notaxPrice"/></td>
+									<td> <button type="button" @click="save" class="am-btn am-btn-primary  am-round">推荐</button></td>
+									<td> <input type="text"  v-model="item.ltbPrice" onfocus="this.blur();"></td>
+									<td> <input type="text"  v-model="item.taxPrice" onfocus="this.blur();"></td>
+									<td> <input type="text"  v-model="item.infoPrice"/></td>
+									<td> <input type="text"  v-model="item.checker"/></td>
+									<td> <input type="text"  v-model="item.effectivedate"/></td>
+									<td> <input type="text"  v-model="item.SD"/></td>
+									<td> <input type="text"  v-model="item.PCN"/></td>
+									<!--最小订购数量-->
+									<td> <input type="text"  v-model="item.xxx"/></td>
+									<td> <input type="text"  v-model="item.moq"/></td>
+									<td> <input type="text"  v-model="item.units"/></td>
+									<!--lt-->
+									<td> <input type="text"  v-model="item.lt"/></td>
+									<td> <input type="text"  v-model="item.subtotal"/></td>
+									<td> <input type="text"  v-model="item.remark"/></td>
+									<!--标记更改-->
+									<td> <input type="text"  v-model="item.xxx "/></td>
+									<td> <input type="text"  v-model="item.rfqId"/></td>
+									<td> <input type="text"  v-model="item.	dataSourceId"/></td>
+								</tr>
+							</tbody>
+						</table>
+
+						<input type="button" id="bn" value="保存并继续添加其他物料报价" onclick="AddTableRow()" />
+					</div>
+				</form>
+		</div>
+
+			<div th:include="common/layouts::footscript"></div>
+
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/rfq/add.js"></script>
+
+</body>
+</html>
